@@ -10,10 +10,8 @@ pipeline {
         stage('App test1'){
 		steps {
 			script{
-			    dirsl = readDir()
-			    def size = dirsl.size()
-			    print size
-			    for (String i : dirsl) {
+			    def subfolders = bat(script: '@dir /B RuntimeBuild', returnStdout: true).split(/\n\r/)
+			    for (String i : subfolders) {
 				print i
 			    }
 			}
