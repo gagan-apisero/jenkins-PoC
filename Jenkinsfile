@@ -8,13 +8,15 @@ pipeline {
 	}
     stages{
         stage('App test1'){
-		script{
-		    dirsl = readDir()
-		    def size = dirsl.size()
-		    print size
-		    for (String i : dirsl) {
-			print i
-		    }
+		steps {
+			script{
+			    dirsl = readDir()
+			    def size = dirsl.size()
+			    print size
+			    for (String i : dirsl) {
+				print i
+			    }
+			}
 		}
         }
 
