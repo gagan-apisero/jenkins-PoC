@@ -16,11 +16,9 @@ pipeline {
 				print changeSet
 			    for (int i=0;i<changeSet.size(); i++) {
 				def entries = changeSet[i].items;
-				    for(int j=0;j<changeSet.size(); j++){
-					def entries = changeSet[i].items;
 					def entry = entries[0];
+				    	print entries
 				    	print entry
-				    }
 			    }
 			}
 		}
