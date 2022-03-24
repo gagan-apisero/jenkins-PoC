@@ -9,7 +9,7 @@ pipeline {
 	}
     stages{
         stage('App test1'){
-            when { changeset pattern: "test1/*", comparator: "REGEXP" }
+            when { changeset pattern: "test1/mule-artifact.json", comparator: "REGEXP" }
             steps {
                 echo 'Building test1'
                 bat 'cd %WORKSPACE%\\test1'
