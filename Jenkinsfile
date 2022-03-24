@@ -12,8 +12,9 @@ pipeline {
             when { changeset pattern: "test1/*" }
             steps {
                 echo 'Building test1'
-                bat """cd %WORKSPACE%\\test1"""
-                bat 'mvn clean package -Djar.name=test1-%APP%'
+		    dir(test1){
+			bat 'mvn clean package -Djar.name=test1-%APP%'
+		    }
             }
         }
         stage('Depoly test1'){
