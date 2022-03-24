@@ -50,7 +50,7 @@ pipeline {
             steps{
                 echo 'Depolying test2 app'
                 dir("test2"){
-                bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test2 -Djar.name=test2-%APP% -Dmule.artifact=%WORKSPACE%\\test2\\target\\test1-%APP%-mule-application.jar'
+                bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test2 -Djar.name=test2-%APP% -Dmule.artifact=%WORKSPACE%\\test2\\target\\test2-%APP%-mule-application.jar'
                 }
             }
         }
@@ -73,7 +73,7 @@ pipeline {
             steps{
                 echo 'Depolying test3 app'
                 dir("test3"){
-                bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test3 -Djar.name=test3-%APP% -Dmule.artifact=%WORKSPACE%\\test3\\target\\test1-%APP%-mule-application.jar'
+                bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test3 -Djar.name=test3-%APP% -Dmule.artifact=%WORKSPACE%\\test3\\target\\test3-%APP%-mule-application.jar'
                 }
             }
         }
