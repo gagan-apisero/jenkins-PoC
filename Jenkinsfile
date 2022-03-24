@@ -12,7 +12,7 @@ pipeline {
             when { changeset pattern: "test1/*" }
             steps {
                 echo 'Building test1'
-		    dir(test1){
+		    dir("test1"){
 			bat 'mvn clean package -Djar.name=test1-%APP%'
 		    }
             }
@@ -26,7 +26,6 @@ pipeline {
             when { changeset pattern: "test1/*" }
             steps{
                 echo 'Depolying test1 app'
-                bat 'cd %WORKSPACE%\\test1'
                 bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test1 -Djar.name=test1-%APP% -Dmule.artifact=%WORKSPACE%\\test1\\target\\test1-%APP%-mule-application.jar'
             }
         }
@@ -47,7 +46,6 @@ pipeline {
             when { changeset pattern: ".test2/*" }
             steps{
                 echo 'Depolying test2 app'
-                bat 'cd %WORKSPACE%\\test2'
                 bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test2 -Djar.name=test2-%APP% -Dmule.artifact=%WORKSPACE%\\test2\\target\\test1-%APP%-mule-application.jar'
             }
         }
@@ -68,7 +66,6 @@ pipeline {
             when { changeset pattern: "test3/*" }
             steps{
                 echo 'Depolying test3 app'
-                bat 'cd %WORKSPACE%\\test3'
                 bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test3 -Djar.name=test3-%APP% -Dmule.artifact=%WORKSPACE%\\test3\\target\\test1-%APP%-mule-application.jar'
             }
         }
