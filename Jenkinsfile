@@ -26,15 +26,18 @@ pipeline {
             when { changeset pattern: "test1/*" }
             steps{
                 echo 'Depolying test1 app'
+                dir("test1"){
                 bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test1 -Djar.name=test1-%APP% -Dmule.artifact=%WORKSPACE%\\test1\\target\\test1-%APP%-mule-application.jar'
+                }
             }
         }
         stage('App test2'){
             when { changeset pattern: "test2/**" }
             steps {
                 echo 'Building test2'
-                bat 'cd %WORKSPACE%\\test1'
+                dir("test2"){
                 bat 'mvn clean package -Djar.name=test2-%APP%'
+                }
             }
         }
         stage('Depoly test2'){
@@ -46,15 +49,18 @@ pipeline {
             when { changeset pattern: ".test2/*" }
             steps{
                 echo 'Depolying test2 app'
+                dir("test2"){
                 bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test2 -Djar.name=test2-%APP% -Dmule.artifact=%WORKSPACE%\\test2\\target\\test1-%APP%-mule-application.jar'
+                }
             }
         }
         stage('App test3'){
             when { changeset pattern: "test3/*" }
             steps {
                 echo 'Building test3'
-                bat 'cd %WORKSPACE%\\test3'
+                dir("test3"){
                 bat 'mvn clean package -Djar.name=test3-%APP%'
+                }
             }
         }
         stage('Depoly test3'){
@@ -66,7 +72,9 @@ pipeline {
             when { changeset pattern: "test3/*" }
             steps{
                 echo 'Depolying test3 app'
+                dir("test3"){
                 bat 'mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=test3 -Djar.name=test3-%APP% -Dmule.artifact=%WORKSPACE%\\test3\\target\\test1-%APP%-mule-application.jar'
+                }
             }
         }
 
