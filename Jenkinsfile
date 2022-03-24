@@ -46,7 +46,7 @@ pipeline {
                 ANYPOINT_CLIENT_ID = credentials('client_id')
                 ANYPOINT_CLIENT_SECRET = credentials('client_secret')
             }
-            when { changeset pattern: ".test2/*" }
+            when { changeset pattern: "test2/*" }
             steps{
                 echo 'Depolying test2 app'
                 dir("test2"){
