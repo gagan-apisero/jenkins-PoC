@@ -1,4 +1,5 @@
-pipeline {  agent any  stages {
+pipeline {  agent any  
+          stages {
    stage("Test changeset"){
         when { changeset "**/Jenkinsfile"}
             steps{ echo "The changeset test worked!!"}
@@ -21,3 +22,6 @@ pipeline {  agent any  stages {
            }
         }
       }
+    }
+    }
+}
