@@ -12,18 +12,11 @@ pipeline {
 		steps {
 			script{
 			    def subfolders = bat(script: '@dir /B /AD | @findstr /L /V "tmp" | @findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
-			    for (String i : subfolders) {
-				print i
-                if((changeset pattern: "test1/*")==true){
-                    echo 'change in test1'
-
-                }if((changeset pattern: "test2/*")==true){
-                    echo 'change in test2'
-
-                }if((changeset pattern: "test3/*")==true){
-                    echo 'change in test3'
-
-                }
+			    def changeSet = currentBuild.changeSets
+				print changeSet
+			    for (int i=0;i<changeSet.size(); i++) {
+				def entries = changeSet[i].items;
+				print entries[0]
 			    }
 			}
 		}
