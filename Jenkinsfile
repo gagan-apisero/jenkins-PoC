@@ -7,7 +7,7 @@ pipeline {
 			
 	}
     stages{
-        stage('App test1'){
+        stage('list dir'){
 		steps {
 			script{
 			    def subfolders = bat(script: '@dir /B |findstr /L /V "temp" |findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
