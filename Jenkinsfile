@@ -9,7 +9,7 @@ pipeline {
 	}
     stages{
         stage('App test1'){
-            when { changeset pattern: "test1/**", comparator: "REGEXP" }
+            when { changeset pattern: "test1/*", comparator: "REGEXP" }
             steps {
                 echo 'Building test1'
                 bat 'cd %WORKSPACE%\\test1'
@@ -22,7 +22,7 @@ pipeline {
                 ANYPOINT_CLIENT_ID = credentials('client_id')
                 ANYPOINT_CLIENT_SECRET = credentials('client_secret')
             }
-            when { changeset pattern: "test1/**", comparator: "REGEXP" }
+            when { changeset pattern: "test1/*", comparator: "REGEXP" }
             steps{
                 echo 'Depolying test1 app'
                 bat 'cd %WORKSPACE%\\test1'
@@ -43,7 +43,7 @@ pipeline {
                 ANYPOINT_CLIENT_ID = credentials('client_id')
                 ANYPOINT_CLIENT_SECRET = credentials('client_secret')
             }
-            when { changeset pattern: ".test2/**", comparator: "REGEXP" }
+            when { changeset pattern: ".test2/*", comparator: "REGEXP" }
             steps{
                 echo 'Depolying test2 app'
                 bat 'cd %WORKSPACE%\\test2'
@@ -51,7 +51,7 @@ pipeline {
             }
         }
         stage('App test3'){
-            when { changeset pattern: "test3/**", comparator: "REGEXP" }
+            when { changeset pattern: "test3/*", comparator: "REGEXP" }
             steps {
                 echo 'Building test3'
                 bat 'cd %WORKSPACE%\\test3'
@@ -64,7 +64,7 @@ pipeline {
                 ANYPOINT_CLIENT_ID = credentials('client_id')
                 ANYPOINT_CLIENT_SECRET = credentials('client_secret')
             }
-            when { changeset pattern: "test3/**", comparator: "REGEXP" }
+            when { changeset pattern: "test3/*", comparator: "REGEXP" }
             steps{
                 echo 'Depolying test3 app'
                 bat 'cd %WORKSPACE%\\test3'
