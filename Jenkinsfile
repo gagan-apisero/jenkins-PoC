@@ -17,7 +17,7 @@ pipeline {
 				while(changeSetIterator.hasNext()){
 					final gitChangeSet = changeSetIterator.next()
 					for(final path:gitChangeSet.getPaths()){
-						print path.getPath()
+						print path.getPath() 
 					}
 				}
 				print changeSet
