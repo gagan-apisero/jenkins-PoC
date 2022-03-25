@@ -16,6 +16,9 @@ pipeline {
 // 			    def changeSetIterator = changeSet.iterator()
 				def data = {changeset pattern: "test1/*"}
 				print data
+				if( data == true){
+				echo 'hello true'
+				}
 // 				while(changeSetIterator.hasNext()){
 // 					def gitChangeSet = changeSetIterator.next()
 // 					for(String path:gitChangeSet.getPaths()){
