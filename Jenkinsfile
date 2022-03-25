@@ -19,7 +19,7 @@ pipeline {
 				print i
 				def rc = bat(script: "git status -s ${i}/",returnStatus: true)
 				print rc
-				bat(script: "git status -s ${i}/ | findstr /L ${i}/")
+				bat(script: "git status -s ${i}/ | findstr /L ${i}/", returnStdout: true)
 // 				bat(script: "git --no-pager diff origin/${params.target} --name-only", returnStdout: true).split('\n')
 // 				println(currentBuild.changeSets)
 			}
