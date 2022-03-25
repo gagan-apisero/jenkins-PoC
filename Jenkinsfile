@@ -14,9 +14,11 @@ pipeline {
 			    def subfolders = bat(script: '@dir /B /AD | @findstr /L /V "tmp" | @findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
 			    def changeSet = build.changeSets
 			    def changeSetIterator = changeSet.iterator()
+				def data = {changeset pattern: "test1/*"}
+				print data
 				while(changeSetIterator.hasNext()){
-					final gitChangeSet = changeSetIterator.next()
-					for(final path:gitChangeSet.getPaths()){
+					def gitChangeSet = changeSetIterator.next()
+					for(String path:gitChangeSet.getPaths()){
 						print path.getPath() 
 					}
 				}
