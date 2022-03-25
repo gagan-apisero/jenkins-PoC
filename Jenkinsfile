@@ -17,9 +17,9 @@ pipeline {
 			for (String i : subfolders) {
 // 				String dir = i
 				print i
-				bat(script: "git status -s ${i}/",returnStatus: true).split(/\n\r/)
+				bat(script: '@git status -s ${i}/',returnStatus: true).split(/\n\r/)
 				
-				bat(script: "git status -s ${i}/ | findstr /L ${i}/", returnStdout: true).split(/\n\r/)
+				bat(script: '@git status -s ${i}/ | @findstr /L ${i}/', returnStdout: true).split(/\n\r/)
 // 				bat(script: "git --no-pager diff origin/${params.target} --name-only", returnStdout: true).split('\n')
 // 				println(currentBuild.changeSets)
 			}
