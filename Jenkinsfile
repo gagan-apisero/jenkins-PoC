@@ -29,7 +29,7 @@ pipeline {
 			    for (int i=0;i<changeSet.size(); i++) {
 				def entries = changeSet[i].items;
 					def entry = entries[0];
-				    	print entries
+				    	print entries.getPath()
 				    	print entry
 			    }
 			}
