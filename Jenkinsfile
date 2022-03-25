@@ -12,9 +12,7 @@ pipeline {
         stage('App test1'){
             steps {
                 echo 'Building test1'
-		    dir("test1"){
-			bat 'mvn clean package -Djar.name=test1-%APP%'
-		    }
+		bat(script: "git --no-pager diff origin/${params.target} --name-only", returnStdout: true).split('\n')
 		println(currentBuild.changeSets)
             }
         }
