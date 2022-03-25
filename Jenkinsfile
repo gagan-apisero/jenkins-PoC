@@ -12,7 +12,10 @@ pipeline {
         stage('App test1'){
             steps {
                 echo 'Building test1'
-		bat(script: "git --no-pager diff origin/${params.target} --name-only", returnStdout: true).split('\n')
+		def rc = bat('script: "git status -s ${dir} | grep -q ${dir}"',returnStatus: true)
+		    print rc
+		 bat('script: "git status -s ${dir} | grep -q ${dir}"')
+		bat('script: "git --no-pager diff origin/${params.target} --name-only"', returnStdout: true).split('\n')
 		println(currentBuild.changeSets)
             }
         }
