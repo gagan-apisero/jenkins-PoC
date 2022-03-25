@@ -16,12 +16,12 @@ pipeline {
 			    def changeSetIterator = changeSet.iterator()
 				def data = {changeset pattern: "test1/*"}
 				print data
-				while(changeSetIterator.hasNext()){
-					def gitChangeSet = changeSetIterator.next()
-					for(String path:gitChangeSet.getPaths()){
-						print path.getPath() 
-					}
-				}
+// 				while(changeSetIterator.hasNext()){
+// 					def gitChangeSet = changeSetIterator.next()
+// 					for(String path:gitChangeSet.getPaths()){
+// 						print path.getPath() 
+// 					}
+// 				}
 				print changeSet
 			    for (int i=0;i<changeSet.size(); i++) {
 				def entries = changeSet[i].items;
