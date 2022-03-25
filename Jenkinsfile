@@ -15,11 +15,11 @@ pipeline {
 		    script{
 			def subfolders = bat(script: '@dir /B /AD | @findstr /L /V "tmp" | @findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
 			for (String i : subfolders) {
-				String dir = i
+// 				String dir = i
 				print i
-				def rc = bat(script: "git status -s ${dir}/",returnStatus: true)
+				def rc = bat(script: "git status -s ${i}/",returnStatus: true)
 				print rc
-				bat(script: "git status -s ${dir}/ | findstr /L ${dir}/")
+				bat(script: "git status -s ${i}/ | findstr /L ${i}/")
 // 				bat(script: "git --no-pager diff origin/${params.target} --name-only", returnStdout: true).split('\n')
 // 				println(currentBuild.changeSets)
 			}
