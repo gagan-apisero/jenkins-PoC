@@ -26,9 +26,9 @@ pipeline {
 // 					}
 // 				}
 				print changeSet
-			    for (changeLogSet : changeSet) {
-				    for(entry:changeLogSet.getItems()){
-					    for(file : entry.getAffectedFiles()){
+			    for (changeLogSet in changeSet) {
+				    for(entry in changeLogSet.getItems()){
+					    for(file in entry.getAffectedFiles()){
 						    if(file.getPath() ==~ /^test1/){
 						    echo 'change under test1'
 						    }
