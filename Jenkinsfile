@@ -26,11 +26,15 @@ pipeline {
 // 					}
 // 				}
 				print changeSet
-			    for (int i=0;i<changeSet.size(); i++) {
-				def entries = changeSet[i].items;
-					def entry = entries[0];
-				    	print entries.getPath()
-				    	print entry
+			    for (changeLogSet : changeSet) {
+				    for(entry:changeLogSet.getItems()){
+					    for(file : entry.getAffectedFiles()){
+						    if(file.getPath() ==~ /^test1/){
+						    echo 'change under test1'
+						    }
+					    }
+				    }
+				
 			    }
 			}
 		}
