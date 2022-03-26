@@ -1,4 +1,4 @@
-// backup static jenkins file
+// backup dynamic jenkins file
 def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('IST'))
 def changedFiles=[]
 pipeline {
@@ -7,7 +7,6 @@ pipeline {
 			//App-name 
 			APP_NAME = 'API'
 	  		APP = "API-${timeStamp}"
-			
 	}
     stages{
         stage('Initialize'){
@@ -29,7 +28,7 @@ pipeline {
                             }
                         }
                     }
-				}
+		}
             }
         }
 
@@ -39,6 +38,14 @@ pipeline {
                 script{
                     for(String i : changedFiles.unique()){
                         echo "${i}"
+                        stage ("Build ${i}") {
+                            steps{
+                                echo "Building ${i}"
+                                // dir("${i}"){
+                                //     bat "mvn clean package -Djar.name=${i}-%APP%"
+                                // }
+                            }
+			}
                     }
                 }
             }
