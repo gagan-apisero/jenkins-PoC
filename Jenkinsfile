@@ -39,12 +39,10 @@ pipeline {
                     for(String i : changedFiles.unique()){
                         echo "${i}"
                         stage ("Build ${i}") {
-                            steps{
                                 echo "Building ${i}"
                                 // dir("${i}"){
                                 //     bat "mvn clean package -Djar.name=${i}-%APP%"
                                 // }
-                            }
 			}
                     }
                 }
