@@ -37,7 +37,7 @@ pipeline {
             steps{
                 echo 'printing changes file full path'
                 script{
-                    for(String i : changedFiles){
+                    for(String i : changedFiles.unique()){
                         echo "${i}"
                     }
                 }
