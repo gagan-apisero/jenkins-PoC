@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'checking folders'
 				script{
-					def subfolders = bat(script: '@dir /B /AD | @findstr /L /V "tmp" | @findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
+					// def subfolders = bat(script: '@dir /B /AD | @findstr /L /V "tmp" | @findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
 					def changeLogSets = currentBuild.changeSets
                     for (int i = 0; i < changeLogSets.size(); i++) {
                         def entries = changeLogSets[i].items
@@ -36,13 +36,17 @@ pipeline {
             steps{
                 echo 'printing changes file full path'
                 script{
+                    changedFiles.remove("Jenkinsfile") // removing Jenkinsfile coz dont want a stage for Jenkinsfile
                     for(String i : changedFiles.unique()){
                         echo "${i}"
-                        stage ("Build ${i}") {
+                        stage("Build ${i}") {
                                 echo "Building ${i}"
                                 // dir("${i}"){
                                 //     bat "mvn clean package -Djar.name=${i}-%APP%"
                                 // }
+			}
+                        stage("Deploying ${i}") {
+                                echo "Deploying ${i}"
 			}
                     }
                 }
