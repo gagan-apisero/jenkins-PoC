@@ -9,21 +9,23 @@ pipeline {
 			
 	}
     stages{
-        stage('App test1'){
+        stage('Initialize'){
             steps {
-                echo 'Building test1'
-		    script{
-			def subfolders = bat(script: '@dir /B /AD | @findstr /L /V "tmp" | @findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
-			for (String i : subfolders) {
-// 				String dir = i
-				print i
-				file = bat(script: 'git status -s ${i}/',returnStatus: true)
-				println file
-// 				bat(script: '@git status -s ${i}/ | @findstr /L ${i}/', returnStdout: true).split(/\n\r/)
-// 				bat(script: "git --no-pager diff origin/${params.target} --name-only", returnStdout: true).split('\n')
-// 				println(currentBuild.changeSets)
-			}
-		    }
+                echo 'checking folders'
+				script{
+					def subfolders = bat(script: '@dir /B /AD | @findstr /L /V "tmp" | @findstr /L /V ".git"', returnStdout: true).split(/\n\r/)
+					for (String i : subfolders) {
+						stage ("Build ${i}") {
+							when { changeset pattern: "${i}/*" }
+							steps{
+								echo "Building ${i}"
+								dir("${i}"){
+								bat "mvn clean package -Djar.name=${i}-%APP%"
+								}
+							}
+						}
+					}
+				}
             }
         }
 
