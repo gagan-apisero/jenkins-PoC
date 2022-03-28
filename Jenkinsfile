@@ -1,4 +1,4 @@
-// backup dynamic jenkins file
+// backup Dynamic jenkins file
 def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('IST'))
 def changedFiles=[]
 pipeline {
