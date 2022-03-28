@@ -57,7 +57,7 @@ pipeline {
                 echo 'Creating Stages for each change project folder'
                 script{
 
-                    changedFiles.remove("Jenkinsfile") // removing Jenkinsfile coz dont want a stage for Jenkinsfile
+                    changedFiles.removeAll(Collections.singleton("Jenkinsfile")) // removing Jenkinsfile coz dont want a stage for Jenkinsfile
                     for(String i : changedFiles.unique()){
                         echo "${i}"
                         if(env.GIT_BRANCH == "dev")  {  
