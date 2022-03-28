@@ -57,8 +57,9 @@ pipeline {
                 echo 'Creating Stages for each change project folder'
                 script{
 
-                    changedFiles.remove("Jenkinsfile") // removing Jenkinsfile coz dont want a stage for Jenkinsfile
+                    changedFiles.removeAll(Collections.singleton("Jenkinsfile")) // removing Jenkinsfile coz dont want a stage for Jenkinsfile
                     for(String i : changedFiles.unique()){
+                        echo "${i}"
                         if(env.GIT_BRANCH == "dev")  {  
 
                             stage("Build ${i} for DEV") {
@@ -76,7 +77,7 @@ pipeline {
                                     bat "mvn deploy -DskipTests -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=${i}-api-dev -Djar.name=${i}-%APP% -Dmule.artifact=%WORKSPACE%\\${i}\\target\\${i}-%APP%-mule-application.jar"
                                 }
                             }
-                            
+
                         }else if(env.GIT_BRANCH == "qa")  {
 
                             mail to: 'gagan.verma@apisero.com',
